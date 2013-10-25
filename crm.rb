@@ -69,6 +69,7 @@ def add_new_contact
 end
 
   def modify_existing_contact
+    contact
     puts "What is the ID of the contact you wish to edit?"
     @id = gets.chomp
 
