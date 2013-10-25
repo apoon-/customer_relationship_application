@@ -50,8 +50,8 @@ attr_accessor :name
     when 6
       exit
     else
-      #puts "Error, not an option" #shuld raise and rescue error
-      raise
+      puts "Error, not an option" #shuld raise and rescue error
+      #raise
     end
   end
 
@@ -66,14 +66,14 @@ def add_new_contact
   note = gets.chomp
   contact = Contact.new(first_name, last_name, email, note)
   Rolodex.add_contact(contact)
+  main_menu #loop back to options
 end
 
   def modify_existing_contact
-    contact
-    puts "What is the ID of the contact you wish to edit?"
-    @id = gets.chomp
-
-    if @id
+    Rolodex.display_all_contacts
+    puts "Which contact would you like to edit?"
+    puts "Enter in their ID:"
+    edit_id = gets.chomp
 
   end
 
@@ -92,11 +92,11 @@ end
   def main_menu
     print_main_menu
     user_selected = gets.to_i
-    begin
+    # begin
     call_option(user_selected)
-    rescue
-        puts "Wrong Option!"
-    end
+    # rescue
+    #     puts "Wrong Option!"
+    # end
   end
 
 end
@@ -107,7 +107,6 @@ end
 
 my_crm = CRM.new("My CRM") #checks for initialize method and starts a new instance of the class CRM
 my_crm.main_menu #call main menu output case sate 
-
 # puts my_crm.name
 
 # my_crm.name = "Your mom's CRM"

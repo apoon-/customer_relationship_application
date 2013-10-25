@@ -1,3 +1,5 @@
+require_relative 'contact'
+
 class Rolodex
   
 #didn't need contact attr accessor or reader or writer as you didn't need it outside the class
@@ -14,7 +16,27 @@ class Rolodex
     contact.id = @id
     @contacts << contact
     puts contact.id
-    @id +=1
+    @id += 1 
+  end
+
+  def self.display_all_contacts
+    @contacts.each do |contact|
+      puts "#{contact.id} - #{contact.first_name} #{contact.last_name}"
+    end
   end
 
 end
+
+#test = Rolodex.new
+#puts Rolodex.contacts.inspect
+
+
+#puts test.display_all_contacts
+
+# contact = Contact.new("John", "Doe", "email@test.com", "test")
+# Rolodex.add_contact(contact)
+# puts Rolodex.display_all_contacts
+
+# contact = Contact.new("Jane", "Doe", "email@test.com", "test")
+# Rolodex.add_contact(contact)
+# puts Rolodex.display_all_contacts
