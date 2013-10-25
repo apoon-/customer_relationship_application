@@ -24,7 +24,7 @@ attr_accessor :name
   # end
 
   def print_main_menu
-    puts "Weclome to #{@name} CRM"
+    puts "Weclome to your CRM, #{@name}"
     puts "[1] Add a new contact"
     puts "[2] Modify an existing contact"
     puts "[3] Delete a contact"
@@ -48,6 +48,7 @@ attr_accessor :name
     when 5
       display_attribute
     when 6
+      puts "Goodbye!"
       exit
     else
       puts "Error, not an option" #shuld raise and rescue error
@@ -70,19 +71,26 @@ def add_new_contact
 end
 
   def modify_existing_contact
-    Rolodex.display_all_contacts
+    Rolodex.display_id_contacts
     puts "Which contact would you like to edit?"
     puts "Enter in their ID:"
-    edit_id = gets.chomp
-
+    @id = gets.chomp
+    main_menu     
   end
 
   def delete_contact
-    #ADD LATER
+    Rolodex.display_id_contacts
+    puts "Which contact would you like to delete?"
+    puts "Enter in their ID:"
+    @id = gets.chomp.to_i
+    Rolodex.delete(@id)
+    main_menu
   end
 
   def display_all
-    #ADD LATER
+    puts "Displaying All Contacts"
+    Rolodex.display_all_contacts
+    main_menu
   end
 
   def display_attribute
@@ -105,7 +113,7 @@ end
 
 #cut out rolodex class into rolodex.rb
 
-my_crm = CRM.new("My CRM") #checks for initialize method and starts a new instance of the class CRM
+my_crm = CRM.new("Anson") #checks for initialize method and starts a new instance of the class CRM
 my_crm.main_menu #call main menu output case sate 
 # puts my_crm.name
 
