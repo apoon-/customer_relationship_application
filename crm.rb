@@ -83,11 +83,15 @@ attr_accessor :name
 
   def modify_existing_contact
     Rolodex.display_id_contacts
+    puts "-------------------------------------------"
     puts "Which contact would you like to edit?"
+    puts "-------------------------------------------"
     puts "Enter in their ID:"
     @id = gets.chomp.to_i
     Rolodex.display_contact_all_attribute(@id)
+    puts "-------------------------------------------"
     puts "Which attribute would you like to edit?"
+    puts "-------------------------------------------"
     puts "[1] First Name"
     puts "[2] Last Name"
     puts "[3] E-Mail"
@@ -99,7 +103,9 @@ attr_accessor :name
   def delete_contact
     system 'clear'
     Rolodex.display_id_contacts
+    puts "-------------------------------------------"
     puts "Which contact would you like to delete?"
+    puts "-------------------------------------------"
     puts "Enter in their ID:"
     @id = gets.chomp.to_i
     Rolodex.delete(@id)
@@ -110,7 +116,16 @@ attr_accessor :name
   end
 
   def display_attribute
-    #ADD LATER
+    system 'clear'
+    puts "---------------------------------------------------------------"
+    puts "Which attribute would you like to see all the contacts for?"
+    puts "---------------------------------------------------------------"
+    puts "[1] First Name"
+    puts "[2] Last Name"
+    puts "[3] E-Mail"
+    puts "[4] Note" 
+    @attribute = gets.chomp
+    Rolodex.print_all_attr(@attribute)
   end 
 
   def main_menu

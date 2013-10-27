@@ -86,56 +86,91 @@ class Rolodex
     case attribute
     when "1" || "first name"
       attribute = @contacts[@index].first_name
-      puts "Current First Name is: #{attribute}"
-      puts "Please enter new First Name"
+      puts "-------------------------------------------"
+      puts "Current FIRST NAME is: #{attribute}"
+      puts "-------------------------------------------"
+      puts "Please enter new FIRST NAME"
       new_attr = gets.chomp
       @contacts[@index].first_name.replace(new_attr)
-      puts "New First Name is now #{@contacts[@index].first_name}"
+      puts "-------------------------------------------"
+      puts "New FIRST NAME is now #{@contacts[@index].first_name}"
+      puts "-------------------------------------------"
     when "2" || "last name"
-      attribute = contacts.last_name
-      puts attribute
+      attribute = @contacts[@index].last_name
+      puts "-------------------------------------------"
+      puts "Current Last Name is: #{attribute}"
+      puts "-------------------------------------------"
+      puts "Please enter new LAST NAME"
+      new_attr = gets.chomp
+      @contacts[@index].last_name.replace(new_attr)
+      puts "-------------------------------------------"
+      puts "New LAST NAME is now #{@contacts[@index].last_name}"
+      puts "-------------------------------------------"
     when "3" || "email"
-      attribute = @contacts.email
-      puts attribute
+      attribute = @contacts[@index].email
+      puts "-------------------------------------------"
+      puts "Current EMAIL is: #{attribute}"
+      puts "-------------------------------------------"
+      puts "Please enter new EMAIL"
+      new_attr = gets.chomp
+      @contacts[@index].email.replace(new_attr)
+      puts "-------------------------------------------"
+      puts "New EMAIL is now #{@contacts[@index].email}"
+      puts "-------------------------------------------"
     when "4" || "note"
-      attribute = @contacts.note
-      puts attribute
+      attribute = @contacts[@index].note
+      puts "-------------------------------------------"
+      puts "Current NOTE is: #{attribute}"
+      puts "-------------------------------------------"
+      puts "Please enter new NOTE"
+      new_attr = gets.chomp
+      @contacts[@index].note.replace(new_attr)
+      puts "-------------------------------------------"
+      puts "New NOTE is now #{@contacts[@index].note}"
+      puts "-------------------------------------------"
     else
       puts "Attribute not found"
     end
   end
 
-  def self.display_attr(id, attribute)
-    indexer(id)
-
+  def self.print_all_attr(attribute)
+    case attribute
+    when "1" || "first name"
+      puts "-----------------------------" 
+      puts "PRINTING ALL FIRST NAMES"    
+      puts "-----------------------------"     
+        @contacts.each do |contact|
+        puts "#{contact.id} - #{contact.first_name.upcase}"
+        end
+      puts "\n"
+    when "2" || "last name"
+      puts "-----------------------------" 
+      puts "PRINTING ALL LAST NAMES"    
+      puts "-----------------------------"     
+        @contacts.each do |contact|
+        puts "#{contact.id} - #{contact.last_name.upcase}"
+        end
+      puts "\n"
+    when "3" || "email"
+      puts "-----------------------------" 
+      puts "PRINTING ALL EMAILS"    
+      puts "-----------------------------"     
+        @contacts.each do |contact|
+        puts "#{contact.id} - #{contact.email}"
+        end
+      puts "\n"
+    when "4" || "note"
+      puts "-----------------------------" 
+      puts "PRINTING ALL NOTES"    
+      puts "-----------------------------"     
+        @contacts.each do |contact|
+        puts "#{contact.id} - #{contact.note}"
+        end
+      puts "\n"
+    else
+      puts "Attribute not found"
+    end
   end
-
-#backup
-  # def attr_finder(attribute)
-
-  #   attribute = attribute.downcase
-
-  #   case attribute
-  #   when "1" || "first name"
-  #     @@attr = @contacts.first_name
-  #   when "2" || "last name"
-  #     @@attr = @contacts.last_name
-  #   when "3" || "email"
-  #     @@attr = @contacts.email
-  #   when "4" || "note"
-  #     @@attr = @contacts.note
-  #   else
-  #     puts "Attribute not found"
-  #   end
-  # end
-
-  # def self.display_attr(id, attribute)
-  #   indexer(id)
-
-  #   attr_finder(attribute)
-
-  #   puts @contacts[@@index].contact.@@attr
-  # end
 
 end
 
