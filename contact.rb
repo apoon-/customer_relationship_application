@@ -9,4 +9,13 @@ attr_accessor :id, :first_name, :last_name, :email, :note
     @note = note
   end
 
+  def print_contact_specific_info
+    puts "----------------------------"
+    puts "Name: #{@first_name.upcase} #{last_name.upcase}"
+    puts "----------------------------"
+    puts "E-mail: #{@email}"
+    puts "Note: #{@note}"
+  end
 end
+
+

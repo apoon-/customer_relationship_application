@@ -23,23 +23,35 @@ attr_accessor :name
   #   @name = name
   # end
 
+  def menu_loop
+    @user_selected = 0
+    while @user_selected != 6
+      main_menu
+    end
+  end
+
   def print_main_menu
-    puts "Weclome to your CRM, #{@name}"
+    puts"-----------------------------------"
+    puts "Welcome to your CRM, #{@name}"
+    puts"-----------------------------------"
     puts "[1] Add a new contact"
     puts "[2] Modify an existing contact"
     puts "[3] Delete a contact"
     puts "[4] Display all the contacts"
     puts "[5] Display an attribute" 
     puts "[6] Exit"
-    puts "Enter a number: "
+    puts "\n"
+    puts "Enter a number:"
   end
 
   def call_option(user_selected)
 
   case user_selected
     when 1
+      system 'clear'
       add_new_contact
     when 2
+      system 'clear'
       modify_existing_contact
     when 3
       delete_contact
@@ -48,6 +60,7 @@ attr_accessor :name
     when 5
       display_attribute
     when 6
+      puts "\n"
       puts "Goodbye!"
       exit
     else
@@ -67,30 +80,34 @@ def add_new_contact
   note = gets.chomp
   contact = Contact.new(first_name, last_name, email, note)
   Rolodex.add_contact(contact)
-  main_menu #loop back to options
 end
 
   def modify_existing_contact
     Rolodex.display_id_contacts
     puts "Which contact would you like to edit?"
     puts "Enter in their ID:"
-    @id = gets.chomp
-    main_menu     
+    @id = gets.chomp.to_i
+    Rolodex.display_contact_attribute(@id)
+    puts "Which attribute would you like to edit?"
+    puts "[1] First Name"
+    puts "[2] Last Name"
+    puts "[3] E-Mail"
+    puts "[4] Note" 
+    attribute = gets.chomp
   end
 
   def delete_contact
+    system 'clear'
     Rolodex.display_id_contacts
     puts "Which contact would you like to delete?"
     puts "Enter in their ID:"
     @id = gets.chomp.to_i
     Rolodex.delete(@id)
-    main_menu
   end
 
   def display_all
-    puts "Displaying All Contacts"
     Rolodex.display_all_contacts
-    main_menu
+    #main_menu
   end
 
   def display_attribute
@@ -107,6 +124,14 @@ end
     # end
   end
 
+  def test_contacts
+    Rolodex.add_contact(Contact.new("Anson", "Poon", "apoon@gmail.com", "Hi"))
+    Rolodex.add_contact(Contact.new("Test", "Tester", "test@gmail.com", "Test"))
+    Rolodex.add_contact(Contact.new("Test1", "Tester1", "test2@gmail.com", "test"))
+    Rolodex.add_contact(Contact.new("Test2", "Tester2", "test3@gmail.com", "test"))
+    Rolodex.add_contact(Contact.new("Test3", "Tester3", "test4@gmail.com", "test"))
+  end
+
 end
 
 #cut out contact class into contact.rb
@@ -114,7 +139,8 @@ end
 #cut out rolodex class into rolodex.rb
 
 my_crm = CRM.new("Anson") #checks for initialize method and starts a new instance of the class CRM
-my_crm.main_menu #call main menu output case sate 
+my_crm.test_contacts
+my_crm.menu_loop #call main menu output case sate 
 # puts my_crm.name
 
 # my_crm.name = "Your mom's CRM"
