@@ -81,12 +81,11 @@ class Rolodex
   end
 
   def self.modify(attribute, id)
-    indexer(id)
+    Rolodex.indexer(id)
 
     case attribute
     when "1" || "first name"
       attribute = @contacts[@index].first_name
-      system 'clear'
       puts "-------------------------------------------"
       puts "Current FIRST NAME is: #{attribute}"
       puts "-------------------------------------------"
@@ -98,7 +97,6 @@ class Rolodex
       puts "-------------------------------------------"
     when "2" || "last name"
       attribute = @contacts[@index].last_name
-      system 'clear'
       puts "-------------------------------------------"
       puts "Current Last Name is: #{attribute}"
       puts "-------------------------------------------"
@@ -110,7 +108,6 @@ class Rolodex
       puts "-------------------------------------------"
     when "3" || "email"
       attribute = @contacts[@index].email
-      system 'clear'
       puts "-------------------------------------------"
       puts "Current EMAIL is: #{attribute}"
       puts "-------------------------------------------"
@@ -122,7 +119,6 @@ class Rolodex
       puts "-------------------------------------------"
     when "4" || "note"
       attribute = @contacts[@index].note
-      system 'clear'
       puts "-------------------------------------------"
       puts "Current NOTE is: #{attribute}"
       puts "-------------------------------------------"
@@ -134,14 +130,12 @@ class Rolodex
       puts "-------------------------------------------"
     else
       puts "Attribute not found"
-      system 'clear'
     end
   end
 
   def self.print_all_attr(attribute)
     case attribute
     when "1" || "first name"
-      system 'clear'
       puts "-----------------------------" 
       puts "PRINTING ALL FIRST NAMES"    
       puts "-----------------------------"     
@@ -150,7 +144,6 @@ class Rolodex
         end
       puts "\n"
     when "2" || "last name"
-      system 'clear'
       puts "-----------------------------" 
       puts "PRINTING ALL LAST NAMES"    
       puts "-----------------------------"     
@@ -159,7 +152,6 @@ class Rolodex
         end
       puts "\n"
     when "3" || "email"
-      system 'clear'
       puts "-----------------------------" 
       puts "PRINTING ALL EMAILS"    
       puts "-----------------------------"     
@@ -168,7 +160,6 @@ class Rolodex
         end
       puts "\n"
     when "4" || "note"
-      system 'clear'
       puts "-----------------------------" 
       puts "PRINTING ALL NOTES"    
       puts "-----------------------------"     
@@ -178,7 +169,6 @@ class Rolodex
       puts "\n"
     else
       puts "Attribute not found"
-      system 'clear'
     end
   end
 

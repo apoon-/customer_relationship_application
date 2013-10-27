@@ -37,10 +37,9 @@ attr_accessor :name
     puts "[1] Add a new contact"
     puts "[2] Modify an existing contact"
     puts "[3] Delete a contact"
-    puts "[4] Display specific contact"
-    puts "[5] Display all the contacts"
-    puts "[6] Display an attribute" 
-    puts "[7] Exit"
+    puts "[4] Display all the contacts"
+    puts "[5] Display an attribute" 
+    puts "[6] Exit"
     puts "\n"
     puts "Enter a number:"
   end
@@ -56,16 +55,12 @@ attr_accessor :name
     when 3
       delete_contact
     when 4
-      display_one_contact
-    when 5
       display_all
-    when 6
+    when 5
       display_attribute
-    when 7
+    when 6
       puts "\n"
-      puts "--------------------------------"
-      puts "GOODBYE!"
-      puts "--------------------------------"
+      puts "Goodbye!"
       exit
     else
       puts "Error, not an option" #shuld raise and rescue error
@@ -74,21 +69,13 @@ attr_accessor :name
   end
 
   def add_new_contact
-    puts "--------------------------------"
-    puts "Enter First Name: "
-    puts "--------------------------------"
+    print "Enter First Name: "
     first_name = gets.chomp
-    puts "--------------------------------"
-    puts "Enter Last Name: "
-    puts "--------------------------------"
+    print "Enter Last Name: "
     last_name = gets.chomp
-    puts "--------------------------------"
-    puts "Enter Email Address: "
-    puts "--------------------------------"
+    print "Enter Email Address: "
     email = gets.chomp
-    puts "--------------------------------"
-    puts "Enter a Note: "
-    puts "--------------------------------"
+    print "Enter a Note: "
     note = gets.chomp
     contact = Contact.new(first_name, last_name, email, note)
     Rolodex.add_contact(contact)
@@ -102,7 +89,6 @@ attr_accessor :name
     puts "Enter in their ID:"
     @id = gets.chomp.to_i
     Rolodex.display_contact_all_attribute(@id)
-    system 'clear'
     puts "-------------------------------------------"
     puts "Which attribute would you like to edit?"
     puts "-------------------------------------------"
@@ -123,18 +109,6 @@ attr_accessor :name
     puts "Enter in their ID:"
     @id = gets.chomp.to_i
     Rolodex.delete(@id)
-  end
-
-  def display_one_contact
-    system 'clear'
-    Rolodex.display_id_contacts
-    puts "-------------------------------------------"
-    puts "Which contact would you like to view?"
-    puts "-------------------------------------------"
-    puts "Enter in their ID:"
-    @id = gets.chomp.to_i
-    puts "\n"
-    Rolodex.display_contact_all_attribute(@id)
   end
 
   def display_all
