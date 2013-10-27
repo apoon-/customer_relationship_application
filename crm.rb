@@ -45,7 +45,6 @@ attr_accessor :name
   end
 
   def call_option(user_selected)
-
   case user_selected
     when 1
       system 'clear'
@@ -69,31 +68,32 @@ attr_accessor :name
     end
   end
 
-def add_new_contact
-  print "Enter First Name: "
-  first_name = gets.chomp
-  print "Enter Last Name: "
-  last_name = gets.chomp
-  print "Enter Email Address: "
-  email = gets.chomp
-  print "Enter a Note: "
-  note = gets.chomp
-  contact = Contact.new(first_name, last_name, email, note)
-  Rolodex.add_contact(contact)
-end
+  def add_new_contact
+    print "Enter First Name: "
+    first_name = gets.chomp
+    print "Enter Last Name: "
+    last_name = gets.chomp
+    print "Enter Email Address: "
+    email = gets.chomp
+    print "Enter a Note: "
+    note = gets.chomp
+    contact = Contact.new(first_name, last_name, email, note)
+    Rolodex.add_contact(contact)
+  end
 
   def modify_existing_contact
     Rolodex.display_id_contacts
     puts "Which contact would you like to edit?"
     puts "Enter in their ID:"
     @id = gets.chomp.to_i
-    Rolodex.display_contact_attribute(@id)
+    Rolodex.display_contact_all_attribute(@id)
     puts "Which attribute would you like to edit?"
     puts "[1] First Name"
     puts "[2] Last Name"
     puts "[3] E-Mail"
     puts "[4] Note" 
-    attribute = gets.chomp
+    @attribute = gets.chomp
+    Rolodex.modify(@attribute, @id)
   end
 
   def delete_contact
@@ -107,7 +107,6 @@ end
 
   def display_all
     Rolodex.display_all_contacts
-    #main_menu
   end
 
   def display_attribute

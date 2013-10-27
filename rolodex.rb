@@ -12,7 +12,7 @@ class Rolodex
 
   @contacts = [] # class level instance variable - within the class, not available at every method but at the class level 
   @id = 1000 #starts the id at 1000
-  @@index = 0
+  @index = 0
   # @@attr = @contacts.first_name
 
   def self.contacts #reader for class level instance variable 
@@ -60,7 +60,7 @@ class Rolodex
       if contact.id == id
         break
       else
-        @@index +=1 
+        @index +=1 
       end
     end 
   end
@@ -68,35 +68,38 @@ class Rolodex
   def self.delete(id)
     indexer(id)
 
-    @contacts.delete_at(@@index)
+    @contacts.delete_at(@index)
       system 'clear'
       puts"----------"
       puts "DELETED"
       puts"----------"
   end
 
-  def self.display_contact_attribute(id)
+  def self.display_contact_all_attribute(id)
     indexer(id)
-    puts @contacts[@@index].print_contact_specific_info
+    puts @contacts[@index].print_specific_contact
   end
 
-  def self.modify(attribute)
-  end
-
-  def specific_attr_display(attribute)
-    indexer(id)
-
-    attribute = attribute.downcase
+  def self.modify(attribute, id)
+    Rolodex.indexer(id)
 
     case attribute
     when "1" || "first name"
-      @@attr = @contacts[@@index].contact.first_name
+      attribute = @contacts[@index].first_name
+      puts "Current First Name is: #{attribute}"
+      puts "Please enter new First Name"
+      new_attr = gets.chomp
+      @contacts[@index].first_name.replace(new_attr)
+      puts "New First Name is now #{@contacts[@index].first_name}"
     when "2" || "last name"
-      @@attr = @contacts[@@index].contact.last_name
+      attribute = contacts.last_name
+      puts attribute
     when "3" || "email"
-      @@attr = @contacts[@@index].contact.email
+      attribute = @contacts.email
+      puts attribute
     when "4" || "note"
-      @@attr = @contacts[@@index].contact.note
+      attribute = @contacts.note
+      puts attribute
     else
       puts "Attribute not found"
     end
@@ -105,9 +108,6 @@ class Rolodex
   def self.display_attr(id, attribute)
     indexer(id)
 
-    attr_finder(attribute)
-
-    puts @@attr
   end
 
 #backup
